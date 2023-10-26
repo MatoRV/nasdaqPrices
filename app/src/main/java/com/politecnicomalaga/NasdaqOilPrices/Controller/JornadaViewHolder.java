@@ -1,9 +1,12 @@
-package com.politecnicomalaga.NasdaqOilPrices;
+package com.politecnicomalaga.NasdaqOilPrices.Controller;
 
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.politecnicomalaga.NasdaqOilPrices.Controller.JornadaAdapter;
+import com.politecnicomalaga.NasdaqOilPrices.R;
 
 public class JornadaViewHolder extends RecyclerView.ViewHolder {
 

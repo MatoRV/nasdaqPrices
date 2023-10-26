@@ -1,10 +1,10 @@
-package com.politecnicomalaga.NasdaqOilPrices;
+package com.politecnicomalaga.NasdaqOilPrices.Controller;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.politecnicomalaga.NasdaqOilPrices.Model.Price;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class Respuesta {
         //TODO: parse JSON and add data to the list.
         JsonElement jsonElement = JsonParser.parseString(this.datos);
 
-        JsonObject jso = jsonElement.getAsJsonObject().get("dataset").getAsJsonObject();
+        JsonObject jso = jsonElement.getAsJsonObject().get("datatable").getAsJsonObject();
         JsonArray jsonLista = jso.get("data").getAsJsonArray();
 
         for(int i = 0;i<jsonLista.size();i++) {

@@ -1,22 +1,22 @@
-package com.politecnicomalaga.NasdaqOilPrices;
+package com.politecnicomalaga.NasdaqOilPrices.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.politecnicomalaga.NasdaqOilPrices.Controller.JornadaAdapter;
+import com.politecnicomalaga.NasdaqOilPrices.Controller.MainController;
+import com.politecnicomalaga.NasdaqOilPrices.Model.Price;
+import com.politecnicomalaga.NasdaqOilPrices.R;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 

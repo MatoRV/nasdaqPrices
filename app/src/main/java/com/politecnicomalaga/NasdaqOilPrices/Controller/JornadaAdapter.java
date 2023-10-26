@@ -1,4 +1,4 @@
-package com.politecnicomalaga.NasdaqOilPrices;
+package com.politecnicomalaga.NasdaqOilPrices.Controller;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.politecnicomalaga.NasdaqOilPrices.Model.Price;
+import com.politecnicomalaga.NasdaqOilPrices.R;
 
 import java.util.LinkedList;
 

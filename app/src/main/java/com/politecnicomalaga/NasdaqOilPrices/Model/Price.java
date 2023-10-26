@@ -1,4 +1,4 @@
-package com.politecnicomalaga.NasdaqOilPrices;
+package com.politecnicomalaga.NasdaqOilPrices.Model;
 
 public class Price {
 

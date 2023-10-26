@@ -1,4 +1,4 @@
-package com.politecnicomalaga.NasdaqOilPrices;
+package com.politecnicomalaga.NasdaqOilPrices.Controller;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -23,7 +23,7 @@ import okhttp3.Response;
 public class Peticion {
     //ESTADO
     //Clase utilidad que no necesita nada más que poner a funcionar la peticion HTTPs
-    private static final String API_KEY = "&api_key=PONERTUAPIKEY";
+    private static final String API_KEY = "&api_key=nHG_fUusNNsuyJa9vKzn";
     //COMPORTAMIENTO
     public Peticion() {
 

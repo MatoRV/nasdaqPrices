@@ -1,4 +1,7 @@
-package com.politecnicomalaga.NasdaqOilPrices;
+package com.politecnicomalaga.NasdaqOilPrices.Controller;
+
+import com.politecnicomalaga.NasdaqOilPrices.Model.Price;
+import com.politecnicomalaga.NasdaqOilPrices.View.MainActivity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -6,7 +9,7 @@ import java.util.List;
 public class MainController {
 
     //SINGLETON Controller
-    private static final String DATA_URL = "https://data.nasdaq.com/api/v3/datasets/OPEC/ORB.json?rows=30";
+    private static final String DATA_URL = "https://data.nasdaq.com/api/v3/datatables/QDL/OPEC.json?";
     private static MainController mySingleController;
 
     private List<Price> dataRequested;
