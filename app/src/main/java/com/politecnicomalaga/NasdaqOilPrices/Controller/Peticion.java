@@ -29,7 +29,7 @@ public class Peticion {
 
     }
 
-    public void requestData(String URL) {
+    public void requestData(String URL, String tipo) {
         OkHttpClient cliente = new OkHttpClient();
 
         //construimos la peticion
@@ -54,7 +54,11 @@ public class Peticion {
                      @Override
                      public void run() {
                          // Code will be executed on the main thread
-                         MainController.getSingleton().setDataFromNasdaq(respuesta);
+                         if (tipo.equalsIgnoreCase("oil")) {
+                             MainController.getSingleton().setDataFromNasdaq(respuesta);
+                         } else if (tipo.equalsIgnoreCase("iron")) {
+                             MainController.getSingleton().setIronDataFromNasdaq(respuesta);
+                         }
                      }
                  });
              }

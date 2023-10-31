@@ -23,10 +23,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Nasdaq Oil Prices"
-
             android:gravity="center"
             android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/other_price"
             app:layout_constraintEnd_toStartOf="@id/b_getData"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,10 +36,32 @@
             android:layout_height="wrap_content"
             android:text="Load Data"
             android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/button_other_price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_oilDesc"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/other_price"
+            android:text="Nasdaq price"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/tv_oilDesc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_other_price"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_other_price"
+            android:text="Load Data"
+            app:layout_constraintTop_toBottomOf="@+id/b_getData"
+            app:layout_constraintStart_toEndOf="@+id/other_price"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView

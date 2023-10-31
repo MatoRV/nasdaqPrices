@@ -29,7 +29,7 @@ public class Respuesta {
     }
 
 
-    public List<Price> getData() {
+    public List<Price> getOilData() {
 
         LinkedList<Price> dataList = new LinkedList<>();
         //Parsing the JSON
@@ -41,6 +41,20 @@ public class Respuesta {
         JsonArray jsonLista = jso.get("data").getAsJsonArray();
 
         for(int i = 0;i<jsonLista.size();i++) {
+            dataList.add(new Price(jsonLista.get(i).getAsJsonArray().get(0).getAsJsonPrimitive().getAsString(),jsonLista.get(i).getAsJsonArray().get(1).getAsJsonPrimitive().getAsString()));
+        }
+
+        return dataList;
+    }
+
+    public List<Price> getIronData() {
+        LinkedList<Price> dataList = new LinkedList<>();
+
+        JsonElement jsonElement = JsonParser.parseString(this.datos);
+        JsonObject json = jsonElement.getAsJsonObject().get("dataset").getAsJsonObject();
+        JsonArray jsonLista = json.get("data").getAsJsonArray();
+
+        for (int i = 0; i < jsonLista.size(); i++) {
             dataList.add(new Price(jsonLista.get(i).getAsJsonArray().get(0).getAsJsonPrimitive().getAsString(),jsonLista.get(i).getAsJsonArray().get(1).getAsJsonPrimitive().getAsString()));
         }
 

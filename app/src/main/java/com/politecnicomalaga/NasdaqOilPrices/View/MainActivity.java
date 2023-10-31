@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,11 +44,20 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Button generar = (Button) findViewById(R.id.b_getData);
+        Button generar2 = (Button) findViewById(R.id.button_other_price);
         generar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Getting data from Nasdaq Servers...", Toast.LENGTH_LONG).show();
-                MainController.getSingleton().requestDataFromNasdaq();
+                MainController.getSingleton().requestOilDataFromNasdaq();
+            }
+        });
+
+        generar2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Obteniendo datos de los servidores de Nasdaq...",Toast.LENGTH_LONG).show();
+                MainController.getSingleton().requestIronDataFromNasdaq();
             }
         });
 
