@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.politecnicomalaga.NasdaqOilPrices.Controller.GraphController;
 import com.politecnicomalaga.NasdaqOilPrices.Controller.JornadaAdapter;
 import com.politecnicomalaga.NasdaqOilPrices.Controller.MainController;
 import com.politecnicomalaga.NasdaqOilPrices.Model.Price;
@@ -24,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private LinkedList<Price> mList = new LinkedList<>();
     private RecyclerView mRecyclerView;
     private JornadaAdapter mAdapter;
-
     private static MainActivity myActiveActivity;
 
 
@@ -43,8 +45,10 @@ public class MainActivity extends AppCompatActivity {
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
         Button generar = (Button) findViewById(R.id.b_getData);
         Button generar2 = (Button) findViewById(R.id.button_other_price);
+        Button generarGraph = (Button) findViewById(R.id.buttonOilGraph);
         generar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +61,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this,"Obteniendo datos de los servidores de Nasdaq...",Toast.LENGTH_LONG).show();
-                MainController.getSingleton().requestIronDataFromNasdaq();
+                MainController.getSingleton().requestGoldDataFromNasdaq();
+            }
+        });
+        generarGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Cargando grafico del Pretróleo",Toast.LENGTH_LONG).show();
+                GraphController.getSingleton().getGraphView(MainActivity.this);
             }
         });
 
@@ -75,14 +86,15 @@ public class MainActivity extends AppCompatActivity {
             mList.add(item);
         }
         mAdapter.notifyDataSetChanged();
-        TextView tv = (TextView) findViewById(R.id.tv_oilDesc);
-        tv.setText("Nasdaq Oil Prices: 30 rows");
     }
 
-    public void errorData(String error) {
+    public void errorData(String error, String tipo) {
         TextView tv = (TextView) findViewById(R.id.tv_oilDesc);
-        tv.setText(error);
-
+        if (tipo.equalsIgnoreCase("oil")) {
+            tv.setText(error);
+        } else if (tipo.equalsIgnoreCase("iron")) {
+            tv.setText(error);
+        }
     }
 
 

@@ -18,8 +18,7 @@ public class JornadaAdapter extends RecyclerView.Adapter<JornadaViewHolder> {
     private final LinkedList<Price> mList;
     private LayoutInflater mInflater;
 
-    public JornadaAdapter(Context context,
-                          LinkedList<Price> list) {
+    public JornadaAdapter(Context context, LinkedList<Price> list) {
         mInflater = LayoutInflater.from(context);
         this.mList = list;
     }
@@ -38,8 +37,6 @@ public class JornadaAdapter extends RecyclerView.Adapter<JornadaViewHolder> {
         //TODO: fill data
        holder.setDay(this.mList.get(position).getDay());
        holder.setPrice(this.mList.get(position).getPrice());
-
-
     }
 
 

@@ -56,8 +56,8 @@ public class Peticion {
                          // Code will be executed on the main thread
                          if (tipo.equalsIgnoreCase("oil")) {
                              MainController.getSingleton().setDataFromNasdaq(respuesta);
-                         } else if (tipo.equalsIgnoreCase("iron")) {
-                             MainController.getSingleton().setIronDataFromNasdaq(respuesta);
+                         } else if (tipo.equalsIgnoreCase("gold")) {
+                             MainController.getSingleton().setGoldDataFromNasdaq(respuesta);
                          }
                      }
                  });
@@ -73,7 +73,7 @@ public class Peticion {
                      public void run() {
                          // Code will be executed on the main thread
                          MainController.getSingleton().setDataFromNasdaq("");
-                         MainController.getSingleton().setErrorFromNasdaq(respuesta);
+                         MainController.getSingleton().setErrorFromNasdaq(respuesta, tipo);
                      }
                  });
              }

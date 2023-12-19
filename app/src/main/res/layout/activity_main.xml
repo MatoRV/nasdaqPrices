@@ -34,10 +34,11 @@
             android:id="@+id/b_getData"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Load Data"
+            android:layout_marginStart="5dp"
             android:gravity="center"
+            android:text="Load Data"
             app:layout_constraintBottom_toTopOf="@+id/button_other_price"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonOilGraph"
             app:layout_constraintStart_toEndOf="@id/tv_oilDesc"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/other_price"
-            android:text="Nasdaq price"
+            android:text="Annual Gold Price"
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@+id/tv_oilDesc"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,15 +54,29 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <Button
+            android:id="@+id/button_other_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/button_other_price"
+            android:layout_marginStart="5dp"
+            android:gravity="center"
             android:text="Load Data"
-            app:layout_constraintTop_toBottomOf="@+id/b_getData"
-            app:layout_constraintStart_toEndOf="@+id/other_price"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:gravity="center"/>
+            app:layout_constraintStart_toEndOf="@+id/other_price"
+            app:layout_constraintTop_toBottomOf="@+id/b_getData" />
+
+        <Button
+            android:id="@+id/buttonOilGraph"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:text="@string/graph_data_oil"
+            app:layout_constraintBottom_toTopOf="@+id/button_other_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/b_getData"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -10,7 +10,7 @@ public class MainController {
 
     //SINGLETON Controller
     private static final String DATA_URL = "https://data.nasdaq.com/api/v3/datatables/QDL/OPEC.json?";
-    private static final String IRON_DATA_URL = "https://data.nasdaq.com/api/v3/datasets/ODA/ESP_NGDPRPPPPC.json?";
+    private static final String GOLD_DATA_URL = "https://data.nasdaq.com/api/v3/datasets/LBMA/GOLD.json?";
     private static MainController mySingleController;
 
     private List<Price> dataRequested;
@@ -40,14 +40,14 @@ public class MainController {
         p.requestData(DATA_URL,"oil");
     }
 
-    public void requestIronDataFromNasdaq() {
+    public void requestGoldDataFromNasdaq() {
         Peticion p = new Peticion();
-        p.requestData(IRON_DATA_URL,"iron");
+        p.requestData(GOLD_DATA_URL,"gold");
     }
 
-    public void setIronDataFromNasdaq(String json) {
+    public void setGoldDataFromNasdaq(String json) {
         Respuesta answer = new Respuesta(json);
-        dataRequested = answer.getIronData();
+        dataRequested = answer.getGoldData();
         MainController.activeActivity.accessData();
     }
 
@@ -60,10 +60,10 @@ public class MainController {
         MainController.activeActivity.accessData();
     }
 
-    public void setErrorFromNasdaq(String error) {
+    public void setErrorFromNasdaq(String error, String tipo) {
 
         //Load data on the list
-        MainController.activeActivity.errorData(error);
+        MainController.activeActivity.errorData(error, tipo);
     }
 
 
