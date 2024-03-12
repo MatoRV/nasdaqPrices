@@ -1,32 +1,32 @@
 package com.politecnicomalaga.NasdaqOilPrices.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.politecnicomalaga.NasdaqOilPrices.Controller.GraphController;
 import com.politecnicomalaga.NasdaqOilPrices.Controller.JornadaAdapter;
 import com.politecnicomalaga.NasdaqOilPrices.Controller.MainController;
+import com.politecnicomalaga.NasdaqOilPrices.Controller.PriceViewModel;
 import com.politecnicomalaga.NasdaqOilPrices.Model.Price;
 import com.politecnicomalaga.NasdaqOilPrices.R;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private LinkedList<Price> mList = new LinkedList<>();
     private RecyclerView mRecyclerView;
     private JornadaAdapter mAdapter;
+
+    private PriceViewModel priceViewModel;
     private static MainActivity myActiveActivity;
 
 
@@ -45,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        priceViewModel = new ViewModelProvider(this).get(PriceViewModel.class);
+        priceViewModel.getPrices().observe(this, prices -> {
+            mList.clear();
+            mList.addAll(prices);
+            mAdapter.notifyDataSetChanged();
+        });
+
+
 
         Button generar = (Button) findViewById(R.id.b_getData);
         Button generar2 = (Button) findViewById(R.id.button_other_price);
@@ -53,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Getting data from Nasdaq Servers...", Toast.LENGTH_LONG).show();
-                MainController.getSingleton().requestOilDataFromNasdaq();
+                priceViewModel.loadOilPrecios();
             }
         });
 
@@ -61,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this,"Obteniendo datos de los servidores de Nasdaq...",Toast.LENGTH_LONG).show();
-                MainController.getSingleton().requestGoldDataFromNasdaq();
+                priceViewModel.loadGoldPrecios();
             }
         });
         generarGraph.setOnClickListener(new View.OnClickListener() {
@@ -76,17 +84,17 @@ public class MainActivity extends AppCompatActivity {
         MainController.setActivity(this);
     }
 
-    public void accessData() {
-        //Get data from servers throgh controller-model classes
-        List<Price> nuevaLista = MainController.getSingleton().getDataFromNasdaq();
-
-        //Put data in adapter
-        mList.clear();
-        for (Price item:nuevaLista) {
-            mList.add(item);
-        }
-        mAdapter.notifyDataSetChanged();
-    }
+//    public void accessData() {
+//        //Get data from servers throgh controller-model classes
+//        List<Price> nuevaLista = MainController.getSingleton().getDataFromNasdaq();
+//
+//        //Put data in adapter
+//        mList.clear();
+//        for (Price item:nuevaLista) {
+//            mList.add(item);
+//        }
+//        mAdapter.notifyDataSetChanged();
+//    }
 
     public void errorData(String error, String tipo) {
         TextView tv = (TextView) findViewById(R.id.tv_oilDesc);
